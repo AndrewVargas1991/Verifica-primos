@@ -3,19 +3,28 @@
 # Exemplo, até o número 30 há 10 primos, sendo eles 2, 3, 5, 7, 11, 13, 17, 19, 23 e 29, porque
 #   todos eles só podem divididos por 1 e por eles mesmos restando 0 como resultado da divisão
 
+import time
+
 numero = int(input('Digite até que número deseja verificar se é primo: '))
 primos = []
 comparacoes = 0
+tempo_normal = float()
+tempo_impar = float()
+tempo_metade = float()
+tempo_primo = float()
 
-def resultados():
+def resultados(tempo):
+    print(f'Tempo: {tempo:2f} segundos')
     print(f'Comparações: {comparacoes}')
     print(f'Quantidade de primos: {len(primos)}')
-    print(f'Números primos: {primos}\n')
+    # print(f'Números primos: {primos}')  # Caso deseje ver os números primos na tela
+    print('')
 
 def metodo_normal():
-    global comparacoes
+    global comparacoes, tempo_normal
     comparacoes = 0
     primos.clear()
+    inicio = time.time()
     for i in range(2, numero + 1):
         eh_primo = True
         for j in range(2, i):
@@ -25,13 +34,16 @@ def metodo_normal():
                 break
         if eh_primo:
             primos.append(i)
+    fim = time.time()
     print('Método NORMAL')
-    resultados()
+    tempo_normal = fim - inicio
+    resultados(tempo_normal)
 
 def metodo_impar():    
-    global comparacoes
+    global comparacoes, tempo_impar
     comparacoes = 0
     primos.clear()
+    inicio = time.time()
     for i in range(3, numero + 1, 2):
         eh_primo = True
         for j in range(3, i, 2):
@@ -42,14 +54,17 @@ def metodo_impar():
         if eh_primo:
             primos.append(i)
     primos.insert(0, 2)
+    fim = time.time()
     print('Método ÍMPAR')
-    resultados()
+    tempo_impar = fim - inicio
+    resultados(tempo_impar)
 
 def metodo_metade():
-    global comparacoes
+    global comparacoes, tempo_metade
     comparacoes = 0
     primos.clear()
     primos.append(2)
+    inicio = time.time()
     for i in range(3, numero + 1, 2):
         eh_primo = True
         for j in range(3, (i // 2) + 1, 2):
@@ -59,14 +74,17 @@ def metodo_metade():
                 break
         if eh_primo:
             primos.append(i)
+    fim = time.time()
     print('Método METADE')
-    resultados()
+    tempo_metade = fim - inicio
+    resultados(tempo_metade)
 
 def metodo_primos():
-    global comparacoes
+    global comparacoes, tempo_primo
     comparacoes = 0
     primos.clear()
     primos.append(3)
+    inicio = time.time()
     for i in range(5, numero + 1, 2):
         eh_primo = True
         for j in primos:
@@ -79,12 +97,21 @@ def metodo_primos():
         if eh_primo:
             primos.append(i)
     primos.insert(0, 2)
+    fim = time.time()
     print('Método PRIMOS')
-    resultados()
+    tempo_primo = fim - inicio
+    resultados(tempo_primo)
+
+def compara_tempos():
+    global tempo_normal, tempo_impar, tempo_metade, tempo_primo
+    print(f'O método primo foi {(tempo_normal / tempo_primo):.2f} vezes mais rápido que o normal')
+    print(f'Ele também foi {(tempo_impar / tempo_primo):.2f} vezes mais rápido que o ímpar')
+    print(f'E ainda foi {(tempo_metade / tempo_primo):.2f} vezes mais rápido que o metade')
 
 metodo_normal()     # Analisa todos os números (método mais lento)
 metodo_impar()      # Analisa apenas números ímpares (afinal, nenhum número par é primo, com exceção do 2)
 metodo_metade()     # Analisa apenas números ímpares até a metade da lista (afinal, nunca há divisor inteiro após a metade)
 metodo_primos()     # Analisa apenas números ímpares primos até a metade da lista (afinal, multiplicando-se primos elimina-se os não primos)
+compara_tempos()    # Para comparar quantas vezes o método primo é mais rápido que os outros
 
 input('Aperte ENTER para sair...')
