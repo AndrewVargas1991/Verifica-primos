@@ -1,0 +1,15 @@
+Instruções de uso do programa Verificar primos
+
+1- Abra o programa "Verificar primos.py" com o interpretador do Python;
+OBS: Caso você não tenha o IDLE (interpretador do Python), baixe-o no site https://www.python.org
+
+2- Digite até que número deseja analisar se são primos ou não e aperte ENTER.
+
+OBS: Quanto maior o número, maior a demora para calcular o resultado, então para testar, comece digitando números pequenos (menor que mil).
+
+Apenas para exemplificar, nesse programa há 4 métodos para calcular quais são os números primos, e cada um deles faz um número de comparações para chegar ao resultado final, ainda que todos cheguem à mesma conclusão. Por exemplo, há 9.592 números primos entre 1 e 100.000, mas o número de cálculos muda de um método para outro:
+
+-O método normal faz 455.189.150 (mais de 455 milhões) comparações;
+-O método ímpar faz 227.564.780 (mais de 227 milhões) comparações;
+-O método metade faz 113.970.448 (mais de 113 milhões) comparações;
+-E o método primo faz 24.942.953 (mais de 24 milhões) comparações.
