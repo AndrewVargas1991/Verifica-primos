@@ -123,8 +123,8 @@ def metodo_raiz():
     primos.insert(0, 2)
     fim = time.time()
     print('Método RAIZ')
-    tempo_primo = fim - inicio
-    resultados(tempo_primo)
+    tempo_raiz = fim - inicio
+    resultados(tempo_raiz)
 
 def compara_tempos():
     global tempo_normal, tempo_impar, tempo_metade, tempo_primo, tempo_raiz
