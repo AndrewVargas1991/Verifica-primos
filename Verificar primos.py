@@ -104,7 +104,7 @@ def metodo_primos():
     resultados(tempo_primo)
 
 def metodo_raiz():
-    global comparacoes, tempo_primo
+    global comparacoes, tempo_raiz
     comparacoes = 0
     primos.clear()
     primos.append(3)
