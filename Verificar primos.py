@@ -12,6 +12,7 @@ tempo_normal = float()
 tempo_impar = float()
 tempo_metade = float()
 tempo_primo = float()
+tempo_raiz = float()
 
 def resultados(tempo):
     print(f'Tempo: {tempo:2f} segundos')
@@ -102,16 +103,44 @@ def metodo_primos():
     tempo_primo = fim - inicio
     resultados(tempo_primo)
 
+def metodo_raiz():
+    global comparacoes, tempo_primo
+    comparacoes = 0
+    primos.clear()
+    primos.append(3)
+    inicio = time.time()
+    for i in range(5, numero + 1, 2):
+        eh_primo = True
+        for j in primos:
+            if j > (i ** 0.5):
+                break
+            comparacoes += 1
+            if i % j == 0:
+                eh_primo = False
+                break
+        if eh_primo:
+            primos.append(i)
+    primos.insert(0, 2)
+    fim = time.time()
+    print('Método RAIZ')
+    tempo_primo = fim - inicio
+    resultados(tempo_primo)
+
 def compara_tempos():
-    global tempo_normal, tempo_impar, tempo_metade, tempo_primo
-    print(f'O método primo foi {(tempo_normal / tempo_primo):.2f} vezes mais rápido que o normal')
-    print(f'Ele também foi {(tempo_impar / tempo_primo):.2f} vezes mais rápido que o ímpar')
-    print(f'E ainda foi {(tempo_metade / tempo_primo):.2f} vezes mais rápido que o metade')
+    global tempo_normal, tempo_impar, tempo_metade, tempo_primo, tempo_raiz
+    if tempo_raiz == 0:
+        print('Impossível dividir por 0')
+    else:
+        print(f'O método raiz foi {(tempo_normal / tempo_primo):.2f} vezes mais rápido que o normal')
+        print(f'Ele também foi {(tempo_impar / tempo_primo):.2f} vezes mais rápido que o ímpar')
+        print(f'{(tempo_metade / tempo_primo):.2f} vezes mais rápido que o metade')
+        printf(f'E ainda foi {(tempo_metade / tempo_primo):.2f} vezes mais rápido que o primo')
 
 metodo_normal()     # Analisa todos os números (método mais lento)
 metodo_impar()      # Analisa apenas números ímpares (afinal, nenhum número par é primo, com exceção do 2)
 metodo_metade()     # Analisa apenas números ímpares até a metade da lista (afinal, nunca há divisor inteiro após a metade)
 metodo_primos()     # Analisa apenas números ímpares primos até a metade da lista (afinal, multiplicando-se primos elimina-se os não primos)
+metodo_raiz()       # Analisa apenas números ímpares primos menores que a raiz do valor analisado
 compara_tempos()    # Para comparar quantas vezes o método primo é mais rápido que os outros
 
 input('Aperte ENTER para sair...')
