@@ -131,10 +131,10 @@ def compara_tempos():
     if tempo_raiz == 0:
         print('Impossível dividir por 0')
     else:
-        print(f'O método raiz foi {(tempo_normal / tempo_primo):.2f} vezes mais rápido que o normal')
-        print(f'Ele também foi {(tempo_impar / tempo_primo):.2f} vezes mais rápido que o ímpar')
-        print(f'{(tempo_metade / tempo_primo):.2f} vezes mais rápido que o metade')
-        printf(f'E ainda foi {(tempo_metade / tempo_primo):.2f} vezes mais rápido que o primo')
+        print(f'O método raiz foi {(tempo_normal / tempo_raiz):.2f} vezes mais rápido que o normal')
+        print(f'Ele também foi {(tempo_impar / tempo_raiz):.2f} vezes mais rápido que o ímpar')
+        print(f'{(tempo_metade / tempo_raiz):.2f} vezes mais rápido que o metade')
+        print(f'E ainda foi {(tempo_metade / tempo_raiz):.2f} vezes mais rápido que o primo')
 
 metodo_normal()     # Analisa todos os números (método mais lento)
 metodo_impar()      # Analisa apenas números ímpares (afinal, nenhum número par é primo, com exceção do 2)
